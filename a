@@ -1,0 +1,5 @@
+# !/bin/bash
+
+argument="$1"
+
+tmux attach -t $argument

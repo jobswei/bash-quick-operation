@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Check if an argument is provided
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 argument"
+    exit 1
+fi
+
+# Get the value from the argument
+argument="$1"
+
+pip install $argument --proxy=10.193.203.241:10809
+
+# Print the argument value
+# echo "Argument: $argument"
+
+# Add your script logic here, using $argument
+# For example, run a command
+# result=$(some_command "$argument")
+# echo "Result: $result"
+

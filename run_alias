@@ -1,0 +1,2 @@
+alias sbarc="source ~/.bashrc"
+alias vbarc="vim ~/.bashrc"

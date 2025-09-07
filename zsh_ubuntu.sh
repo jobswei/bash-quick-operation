@@ -55,5 +55,42 @@ else
   # 不存在则追加
   echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> ~/.zshrc
 fi
+#!/bin/bash
+
+# 定义要添加的内容
+START_CONTENT='if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi'
+
+END_CONTENT='[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh'
+
+# 定义.zshrc文件路径
+ZSHRC="$HOME/.zshrc"
+
+# 检查.zshrc是否存在，不存在则创建
+if [ ! -f "$ZSHRC" ]; then
+    touch "$ZSHRC"
+    echo "创建了新的.zshrc文件"
+fi
+
+# 检查开头内容是否已存在，不存在则添加到开头
+if ! grep -qxF "$START_CONTENT" "$ZSHRC"; then
+    # 使用临时文件将内容添加到开头
+    temp_file=$(mktemp)
+    echo "$START_CONTENT" > "$temp_file"
+    cat "$ZSHRC" >> "$temp_file"
+    mv "$temp_file" "$ZSHRC"
+    echo "已将内容添加到.zshrc开头"
+else
+    echo "开头内容已存在，无需添加"
+fi
+
+# 检查末尾内容是否已存在，不存在则添加到末尾
+if ! grep -qxF "$END_CONTENT" "$ZSHRC"; then
+    echo "$END_CONTENT" >> "$ZSHRC"
+    echo "已将内容添加到.zshrc末尾"
+else
+    echo "末尾内容已存在，无需添加"
+fi
 
 source ~/.zshrc

@@ -47,7 +47,7 @@ else
     # 不存在则追加
     echo "$PLUGINS_CONFIG" >> ~/.zshrc
 fi
-
+echo 'source $ZSH/oh-my-zsh.sh' >> ~/.zshrc
 # 检查是否存在ZSH_THEME字段
 if grep -q '^ZSH_THEME=' ~/.zshrc; then
   # 存在则替换

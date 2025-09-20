@@ -4,6 +4,7 @@ sudo apt install zsh -y
 # 将Zsh设置为默认Shell
 chsh -s /usr/bin/zsh
 zsh
+# 会进去配置界面，选2
 
 y | sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
